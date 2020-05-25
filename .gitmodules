@@ -1,0 +1,3 @@
+[submodule "miniprogram/components/barrage"]
+	path = miniprogram/components/barrage
+	url = git@github.com:cricketlong/wxminiprogram-component-barrage.git
