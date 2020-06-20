@@ -36,6 +36,12 @@
         </view>
       </view>
 
+      <view>
+        <view style="width: 100%; height: 40px;">
+          <!-- place holder -->
+        </view>
+      </view>
+
       <!--------------------------  list meals  ------------------------>
       <view wx:if="{{loadingMeals}}">
         <template is="loading" data="{{show: true, msg: '一大波食物正在接近中'}}" extClass="loading-bar" />

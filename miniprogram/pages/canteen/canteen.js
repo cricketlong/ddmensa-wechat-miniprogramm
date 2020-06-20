@@ -21,7 +21,8 @@ Page({
       isLastDate: false,
       isCanteenClosed: false,
       loadingDates: true,
-      loadingMeals: true
+      loadingMeals: true,
+      isLoggedIn: app.isLoggedIn()
     });
 
     // get dates of canteen
@@ -41,7 +42,7 @@ Page({
 
         thisPage.setData({
           dateIndex: index,
-          selectedDate: dates_closed[index],
+          selectedDate: dates[index].date,
           dates: dates,
           dates_closed: dates_closed,
           isFirstDate: index == 0,
@@ -110,7 +111,7 @@ Page({
         else {
           thisPage.setData({
             [itemLiked]: false
-          });      
+          });
         }
       }
     });
@@ -162,7 +163,7 @@ Page({
         else {
           thisPage.setData({
             [itemLiked]: true
-          });      
+          });
         }
       }
     });
@@ -183,7 +184,6 @@ Page({
   gotoDate: function(dateIndex) {
     var dates = this.data.dates;
     var selectedDate = dates[dateIndex].date;
-    var dates_closed = this.data.dates_closed;
     this.setData({
       "currentDate" : selectedDate
     });
@@ -226,7 +226,7 @@ Page({
     this.setData({
       dateIndex: dateIndex,
       isCanteenClosed: dates[dateIndex].closed,
-      selectedDate: dates_closed[dateIndex],
+      selectedDate: selectedDate,
       loadingDates: false,
       loadingMeals: !dates[dateIndex].closed
     });
@@ -263,6 +263,10 @@ Page({
       icon: "none",
       duration: 2000
     });
+  },
+
+  addComment: function(e) {
+    console.log(e.detail.value);
   }
 
 });

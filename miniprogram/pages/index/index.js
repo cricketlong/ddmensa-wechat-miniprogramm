@@ -9,7 +9,11 @@ Page({
     takeSession: false,
     requestResult: '',
     loadingCanteens: true,
-    loggingIn: false
+    loggingIn: false,
+    screenWidth: wx.getSystemInfoSync().windowWidth,
+    barrageBackgroundImage: "https://juhu.info/img/appban.jpg",
+    bulletUrls: "https://juhu.info/studentenwerk_api/canteens/4/comments|" + 
+                "https://juhu.info/studentenwerk_api/canteens/29/comments"
   },
 
   onLoad: function() {

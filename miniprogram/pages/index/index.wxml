@@ -5,9 +5,13 @@
   <view class="page__bd">
 
     <!-- 首页顶置图片 -->
-    <view style="height: 150px;">
-      <image mode="aspectFill" src="/static/images/salattheke.jpg" style="width: 100%;height: 100%;" />
+    <view class="container">
+      <barrage numLanes="5" laneHeight="20" bulletsUrls="{{bulletUrls}}" bulletsPerUrl="10" width="{{screenWidth}}" bgImage="{{barrageBackgroundImage}}" bgImageWidth="{{screenWidth}}px" bgImageHeight="150px"></barrage>
     </view>
+
+    <!--<view style="height: 150px;">
+      <image mode="aspectFill" src="/static/images/salattheke.jpg" style="width: 100%;height: 100%;" />
+    </view>-->
 
     <view wx:if="{{loadingCanteens}}">
       <template is="loading" data="{{show: true, msg: '努力加载中'}}" extClass="loading-bar" />

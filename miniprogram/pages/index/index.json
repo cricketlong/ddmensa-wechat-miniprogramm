@@ -3,6 +3,7 @@
     "cell": "../../components/cell/cell",
     "cells": "../../components/cells/cells",
     "slideView": "../../components/slideview/slideview",
-    "loading": "../../components/loading/loading"
+    "loading": "../../components/loading/loading",
+    "barrage": "../../components/barrage/barrage"
   }
 }
