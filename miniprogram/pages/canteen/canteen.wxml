@@ -36,10 +36,11 @@
         </view>
       </view>
 
-      <view>
+      <view style="background: #ffffff;">
         <view style="width: 100%; height: 40px;">
           <!-- place holder -->
         </view>
+        <input bindconfirm="addComment" placeholder="说点什么吧" />
       </view>
 
       <!--------------------------  list meals  ------------------------>

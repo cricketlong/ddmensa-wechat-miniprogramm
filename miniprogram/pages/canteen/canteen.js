@@ -267,6 +267,25 @@ Page({
 
   addComment: function(e) {
     console.log(e.detail.value);
+    var userId = wx.getStorageSync("userId");
+    var token = wx.getStorageSync("token");
+    var canteenId = this.data.canteenId;
+
+    wx.request({
+      url: app.globalData.apiBaseUrl + "/canteens/" + canteenId + "/addcomment/",
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        "wechat_uid": userId,
+        "token": token,
+        "comment": e.detail.value
+      },
+      success: function (res) {
+        console.log(res);
+      }
+    });
   }
 
 });
