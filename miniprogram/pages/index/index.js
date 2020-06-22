@@ -11,15 +11,18 @@ Page({
     loadingCanteens: true,
     loggingIn: false,
     screenWidth: wx.getSystemInfoSync().windowWidth,
-    barrageBackgroundImage: "https://juhu.info/img/appban.jpg",
-    bulletUrls: "https://juhu.info/studentenwerk_api/canteens/4/comments|" + 
-                "https://juhu.info/studentenwerk_api/canteens/29/comments"
   },
 
   onLoad: function() {
     var thisPage = this;
 
     this.checkLoginStatus();
+
+    // set barrage config
+    this.setData({
+      barrageBackgroundImage: "https://juhu.info/img/appban.jpg",
+      bulletUrls: this.generateBulletUrls()
+    });
 
     wx.request({
       url: app.globalData.apiBaseUrl + '/canteens',
@@ -305,6 +308,28 @@ Page({
         }
       }
     });
+  },
+
+  getFavoriteCanteenIds() {
+    var canteens = wx.getStorageSync('canteens');
+    var ids = [];
+    for (var i = 0; i < canteens['favorite'].length; i++) {
+      if ('id' in canteens['favorite'][i]) {
+        ids.push(canteens['favorite'][i]['id']);
+      }
+    }
+
+    return ids;
+  },
+
+  generateBulletUrls() {
+    var canteenIds = this.getFavoriteCanteenIds().slice(0, 3);
+    var urls = [];
+    for (var i = 0; i < canteenIds.length; i++) {
+      urls.push("https://juhu.info/studentenwerk_api/canteens/" + canteenIds[i] + "/comments");
+    }
+
+    return urls.join("|");
   },
 
   /**
