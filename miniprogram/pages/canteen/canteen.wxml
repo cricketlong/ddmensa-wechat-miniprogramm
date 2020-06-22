@@ -41,7 +41,7 @@
           <!-- place holder -->
         </view>
         <view class="addcomment">
-          <input bindconfirm="addComment" placeholder="说点什么吧" />
+          <input bindconfirm="addComment" maxlength="20" placeholder="说点什么吧" />
         </view>
         <view style="width: 100%; height: 8px;">
           <!-- place holder -->
