@@ -40,8 +40,9 @@
         <view style="width: 100%; height: 8px;">
           <!-- place holder -->
         </view>
-        <view class="addcomment">
-          <input bindconfirm="addComment" maxlength="20" placeholder="说点什么吧" />
+        <view wx:if="{{freeToComment}}" class="addcomment">
+          <input name="commentText" maxlength="16" value="{{commentText}}" placeholder="说点什么吧" bindinput="commentInput"/>
+          <image src="/static/images/send.jpg" bindtap="sendComment">发送</image>
         </view>
         <view style="width: 100%; height: 8px;">
           <!-- place holder -->

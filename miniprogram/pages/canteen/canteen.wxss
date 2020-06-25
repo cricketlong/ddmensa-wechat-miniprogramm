@@ -28,3 +28,9 @@
   width: 100%;
   margin: 4px 4px 4px 4px;
 }
+
+.addcomment image {
+  width: 30px;
+  height: 20px;
+  margin: auto 20px auto 20px;
+}

@@ -22,7 +22,9 @@ Page({
       isCanteenClosed: false,
       loadingDates: true,
       loadingMeals: true,
-      isLoggedIn: app.isLoggedIn()
+      isLoggedIn: app.isLoggedIn(),
+      commentText: "",
+      freeToComment: true
     });
 
     // get dates of canteen
@@ -265,8 +267,7 @@ Page({
     });
   },
 
-  addComment: function(e) {
-    console.log(e.detail.value);
+  sendComment: function(e) {
     var userId = wx.getStorageSync("userId");
     var token = wx.getStorageSync("token");
     var canteenId = this.data.canteenId;
@@ -280,12 +281,56 @@ Page({
       data: {
         "wechat_uid": userId,
         "token": token,
-        "comment": e.detail.value
+        "comment": this.data.commentText
       },
       success: function (res) {
         console.log(res);
       }
     });
+
+    this.setData({
+      commentText: "",      // 清空输入框
+      freeToComment: false  // 禁用评论
+    });
+
+    // 保存评论时间
+    this.saveLastCommentTimestamp();
+  },
+
+  commentInput: function(e) {
+    this.setData({
+      commentText: e.detail.value
+    });
+  },
+
+  saveLastCommentTimestamp: function() {
+    var t = Date.parse(new Date());
+    wx.setStorageSync('lastCommentTimestamp', t/1000);
+  },
+
+  getLastCommentTimestamp: function() {
+    var last = wx.getStorageSync('lastCommentTimestamp');
+    if (!last) {
+      return 0;
+    }
+
+    return last;
+  },
+
+  freeToComment() {
+    var last = this.getLastCommentTimestamp();
+    if (last > 0) {
+      var t = Date.parse(new Date())/1000;
+      if ((t - last) > 300) {
+        // 距离上次评论时间已经超过五分钟，允许评论。
+        return true;
+      }
+    }
+    else {
+      return true;
+    }
+
+    return false;
   }
 
 });

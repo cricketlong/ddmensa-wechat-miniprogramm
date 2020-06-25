@@ -121,6 +121,10 @@ Page({
         canteens: allCanteens
       });
     }
+
+    this.setData({
+      bulletUrls: this.generateBulletUrls()
+    });
   },
 
   removefavoriteCanteen: function(e) {
@@ -143,6 +147,10 @@ Page({
         canteens: allCanteens
       });
     }
+
+    this.setData({
+      bulletUrls: this.generateBulletUrls()
+    });
   },
 
   sortCanteens: function(canteens) {
