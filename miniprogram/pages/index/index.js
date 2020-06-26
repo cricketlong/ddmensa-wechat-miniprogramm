@@ -273,12 +273,17 @@ Page({
     });
   },
 
-  checkLoginStatus: function(e) {
+  async checkLoginStatus(e) {
     var loggedIn = false;
     var userInfo = wx.getStorageSync("userInfo");
+    var userId = wx.getStorageSync("userId");
+    var token = wx.getStorageSync("token");
 
-    if (userInfo) {
-      loggedIn = true;
+    if (userInfo && userId && token) {
+      var resp = await this.checkToken(userId, token);
+      if (("data" in resp) && ("status" in resp["data"]) && (resp["data"]["status"] == 200)) {
+        loggedIn = true;
+      }
     }
 
     this.setData({
@@ -377,6 +382,27 @@ Page({
     catch {
       wx.setStorageSync(key, value);
     }
-  }
+  },
 
+  checkToken: function(uid, token) {
+    return new Promise((resolve) => {
+      wx.request({
+        url: app.globalData.apiBaseUrl + '/wechat/user/checktoken/',
+        method: "POST",
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        data: {
+          "wechat_uid": uid,
+          "token": token
+        },
+        success: function(res) {
+          resolve(res);
+        },
+        fail: function(res) {
+          resolve({});
+        }
+      });
+    }, 2000);
+  }
 })

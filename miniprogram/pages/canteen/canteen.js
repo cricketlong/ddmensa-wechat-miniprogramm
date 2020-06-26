@@ -24,7 +24,7 @@ Page({
       loadingMeals: true,
       isLoggedIn: app.isLoggedIn(),
       commentText: "",
-      freeToComment: true
+      freeToComment: this.freeToComment()
     });
 
     // get dates of canteen
