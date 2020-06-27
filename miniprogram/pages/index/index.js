@@ -10,6 +10,7 @@ Page({
     requestResult: '',
     loadingCanteens: true,
     loggingIn: false,
+    displayBullets: true,
     screenWidth: wx.getSystemInfoSync().windowWidth,
   },
 
@@ -123,7 +124,8 @@ Page({
     }
 
     this.setData({
-      bulletUrls: this.generateBulletUrls()
+      bulletUrls: this.generateBulletUrls(),
+      displayBullets: true
     });
   },
 
@@ -148,8 +150,10 @@ Page({
       });
     }
 
+    var displayBullets = fCanteens.length > 0 ? true : false;
     this.setData({
-      bulletUrls: this.generateBulletUrls()
+      bulletUrls: this.generateBulletUrls(),
+      displayBullets: displayBullets
     });
   },
 
