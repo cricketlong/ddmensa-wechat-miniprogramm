@@ -23,7 +23,7 @@
       <view wx:if="{{loggedIn}}">
         <!-----------------------------------  已登录 --------------------------------------------->
         <view style="vertical-align: middle;margin-top: 10px; flex-direction: row-reverse; flex-wrap: nowrap; display: flex;">
-          <view wx:if="{{loggedIn}}" style="width: 40px; margin-right: 10px; display: flex; align-items: center; justify-content: center;" bindtap="logout">
+          <view style="width: 40px; margin-right: 10px; display: flex; align-items: center; justify-content: center;" bindtap="logout">
             <image src="{{userInfo.avatarUrl}}" class="user-avatar" />
           </view>
           <view style="color: rgba(0,0,0,0.7); font-size: 18px; display: flex; align-items: center; justify-content: center; width: 75%;">

@@ -17,15 +17,8 @@ App({
     }
 
     this.globalData = {
-      apiBaseUrl: "https://juhu.info/studentenwerk_api"
+      apiBaseUrl: "https://juhu.info/studentenwerk_api",
+      loggedIn: false
     }
   },
-
-  isLoggedIn() {
-    if (!wx.getStorageSync('token')) {
-      return false;
-    }
-
-    return true;
-  }
 })

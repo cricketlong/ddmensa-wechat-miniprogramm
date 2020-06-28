@@ -1,4 +1,4 @@
-const app = getApp()
+var app = getApp()
 
 Page({
   onLoad: function (options) {
@@ -6,6 +6,9 @@ Page({
 
     console.log(options.canteenId + ": " + options.canteenName);
     wx.setNavigationBarTitle({title: options.canteenName});
+
+    var isLoggedIn = app.globalData.loggedIn;
+    var freeToComment = (isLoggedIn && this.freeToComment());
 
     this.setData({
       dateIndex: 0,
@@ -22,10 +25,13 @@ Page({
       isCanteenClosed: false,
       loadingDates: true,
       loadingMeals: true,
-      isLoggedIn: app.isLoggedIn(),
+      isLoggedIn: isLoggedIn,
       commentText: "",
-      freeToComment: this.freeToComment()
+      freeToComment: freeToComment
     });
+
+    console.log(isLoggedIn);
+    console.log(freeToComment);
 
     // get dates of canteen
     wx.request({
