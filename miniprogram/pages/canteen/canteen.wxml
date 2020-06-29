@@ -40,10 +40,15 @@
         <view style="width: 100%; height: 8px;">
           <!-- place holder -->
         </view>
-        <view wx:if="{{freeToComment}}" class="addcomment">
-          <input name="commentText" maxlength="16" value="{{commentText}}" placeholder="说点什么吧" bindinput="commentInput"/>
-          <view class="send-comment-button" bindtap="sendComment">
-            <image src="/static/images/send.jpg">发送</image>
+        <view wx:if="{{isLoggedIn}}">
+          <view wx:if="{{freeToComment}}" class="addcomment">
+            <input name="commentText" maxlength="16" value="{{commentText}}" placeholder="说点什么吧" bindinput="commentInput"/>
+            <view class="send-comment-button" bindtap="sendComment">
+              <image src="/static/images/send.jpg">发送</image>
+            </view>
+          </view>
+          <view wx:else class="disablecomment">
+            <input disabled="true" value="弹幕已发送，请勿频繁发言。"/>
           </view>
         </view>
         <view style="width: 100%; height: 8px;">

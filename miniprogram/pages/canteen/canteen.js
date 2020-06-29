@@ -7,9 +7,6 @@ Page({
     console.log(options.canteenId + ": " + options.canteenName);
     wx.setNavigationBarTitle({title: options.canteenName});
 
-    var isLoggedIn = app.globalData.loggedIn;
-    var freeToComment = (isLoggedIn && this.freeToComment());
-
     this.setData({
       dateIndex: 0,
       dates: [],
@@ -25,13 +22,10 @@ Page({
       isCanteenClosed: false,
       loadingDates: true,
       loadingMeals: true,
-      isLoggedIn: isLoggedIn,
+      isLoggedIn: app.globalData.isLoggedIn,
       commentText: "",
-      freeToComment: freeToComment
+      freeToComment: this.freeToComment()
     });
-
-    console.log(isLoggedIn);
-    console.log(freeToComment);
 
     // get dates of canteen
     wx.request({
@@ -75,7 +69,7 @@ Page({
   },
 
   likeMeal: function(e) {
-    if (!app.isLoggedIn()) {
+    if (!app.globalData.isLoggedIn) {
       // We should return if user is not logged in.
       this.alertUnloggedIn();
       return;
@@ -126,7 +120,7 @@ Page({
   },
 
   dislikeMeal: function(e) {
-    if (!app.isLoggedIn()) {
+    if (!app.globalData.isLoggedIn) {
       // We should return if user is not logged in.
       this.alertUnloggedIn();
       return;

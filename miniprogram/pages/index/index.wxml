@@ -20,7 +20,7 @@
       <template is="loading" data="{{show: true, msg: '登录中'}}" extClass="loading-bar" />
     </view>
     <view wx:else>
-      <view wx:if="{{loggedIn}}">
+      <view wx:if="{{isLoggedIn}}">
         <!-----------------------------------  已登录 --------------------------------------------->
         <view style="vertical-align: middle;margin-top: 10px; flex-direction: row-reverse; flex-wrap: nowrap; display: flex;">
           <view style="width: 40px; margin-right: 10px; display: flex; align-items: center; justify-content: center;" bindtap="logout">

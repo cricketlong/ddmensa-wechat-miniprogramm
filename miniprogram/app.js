@@ -18,7 +18,7 @@ App({
 
     this.globalData = {
       apiBaseUrl: "https://juhu.info/studentenwerk_api",
-      loggedIn: false
+      isLoggedIn: false
     }
   },
 })

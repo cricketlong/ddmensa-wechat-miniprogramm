@@ -17,8 +17,8 @@ Page({
   onLoad: function() {
     var thisPage = this;
 
-    this.isLoggedIn().then((loggedIn) => {
-      if (loggedIn) {
+    this.isLoggedIn().then((isLoggedIn) => {
+      if (isLoggedIn) {
         var userInfo = wx.getStorageSync("userInfo");
         this.setData({
             userInfo: userInfo
@@ -26,10 +26,9 @@ Page({
       }
 
       this.setData({
-          loggedIn: loggedIn,
+        isLoggedIn: isLoggedIn,
       });
-      app.globalData.loggedIn = loggedIn;
-      console.log("loggedIn: " + loggedIn);
+      app.globalData.isLoggedIn = isLoggedIn;
     });
 
     // set barrage config
@@ -322,12 +321,12 @@ Page({
     });
 
     this.setData({
-      loggedIn: true,
+      isLoggedIn: true,
       userInfo: userInfo,
       loggingIn: false
     });
 
-    app.globalData.loggedIn = this.data.loggedIn;
+    app.globalData.isLoggedIn = this.data.isLoggedIn;
   },
 
   logout: function(e) {
@@ -354,9 +353,9 @@ Page({
 
           // 修改登录状态
           thisPage.setData({
-            loggedIn: false
+            isLoggedIn: false
           });
-          app.globalData.loggedIn = thisPage.data.loggedIn;
+          app.globalData.isLoggedIn = thisPage.data.isLoggedIn;
         }
       }
     });
@@ -365,9 +364,11 @@ Page({
   getFavoriteCanteenIds() {
     var canteens = wx.getStorageSync('canteens');
     var ids = [];
-    for (var i = 0; i < canteens['favorite'].length; i++) {
-      if ('id' in canteens['favorite'][i]) {
-        ids.push(canteens['favorite'][i]['id']);
+    if (canteens) {
+      for (var i = 0; i < canteens['favorite'].length; i++) {
+        if ('id' in canteens['favorite'][i]) {
+          ids.push(canteens['favorite'][i]['id']);
+        }
       }
     }
 
