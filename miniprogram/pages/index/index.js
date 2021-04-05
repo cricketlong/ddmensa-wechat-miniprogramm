@@ -88,7 +88,7 @@ Page({
         "normal": this.sortCanteens(canteens)
       };    
   
-      this.setStorageSync("canteens", canteenData);
+      wx.setStorageSync("canteens", canteenData);
     }
 
     return canteenData;
@@ -109,7 +109,7 @@ Page({
       this.sortCanteens(fCanteens);
       this.sortCanteens(nCanteens);
 
-      this.setStorageSync("canteens", allCanteens);
+      wx.setStorageSync("canteens", allCanteens);
       this.setData({
         canteens: allCanteens
       });
@@ -131,7 +131,7 @@ Page({
       this.sortCanteens(fCanteens);
       this.sortCanteens(nCanteens);
 
-      this.setStorageSync("canteens", allCanteens);
+      wx.setStorageSync("canteens", allCanteens);
       this.setData({
         canteens: allCanteens
       });
@@ -216,7 +216,7 @@ Page({
     var token = "";
     var userInfo = await this.getUserInfo();
 
-    this.setStorage({
+    wx.setStorageSync({
       key: 'userInfo',
       data: userInfo
     });
@@ -241,12 +241,12 @@ Page({
     console.log("token: " + token);
     console.log(userInfo);
 
-    this.setStorage({
+    wx.setStorageSync({
       key: 'userId',
       data: userId
     });
 
-    this.setStorage({
+    wx.setStorageSync({
       key: 'token',
       data: token
     });
@@ -280,17 +280,17 @@ Page({
       success: function(e) {
         if (e.confirm) {
           // 删除用户登录信息
-          wx.removeStorage({
+          wx.removeStorageSync({
             key: 'userInfo'
           })
 
           // 删除用户id
-          wx.removeStorage({
+          wx.removeStorageSync({
             key: 'userId'
           })
 
           // 删除用户token
-          wx.removeStorage({
+          wx.removeStorageSync({
             key: 'token'
           })
 
@@ -307,6 +307,7 @@ Page({
    * 二次封装setStorage()
    * 已知bug，见: https://developers.weixin.qq.com/community/develop/doc/00082c237aca00815c2897ba951400?_at=1567987200123
    **/
+  /*
   setStorage: function(data) {
     if (("key" in data) && ("value" in data)) {
       this.setStorage(data["key"], data["value"]);
@@ -321,12 +322,14 @@ Page({
       wx.setStorage(key, value);
     }
   },
+  */
 
   /**
    * 二次封装setStorageSync()
    * 已知bug，见: https://developers.weixin.qq.com/community/develop/doc/00082c237aca00815c2897ba951400?_at=1567987200123
    **/
 
+  /*
   setStorageSync: function(data) {
     if (("key" in data) && ("value" in data)) {
       this.setStorageSync(data["key"], data["value"]);
@@ -341,5 +344,6 @@ Page({
       wx.setStorageSync(key, value);
     }
   }
+  */
 
 })
